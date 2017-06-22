@@ -22,7 +22,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.0",
     "del-cli": "^1.0.0",
-    "husky": "^0.13.4",
+    "husky": "^0.14.0",
     "mocha": "^3.4.2",
     "npm-run-all": "^4.0.2",
     "power-assert": "^1.4.2",
