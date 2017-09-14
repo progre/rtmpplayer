@@ -1,51 +1,5 @@
 {
   "extends": [
-    "tslint-microsoft-contrib/recommended_ruleset.js",
-    "tslint-config-airbnb"
-  ],
-  "jsRules": {
-    "object-literal-sort-keys": false,
-    "trailing-comma": [
-      true,
-      {
-        "multiline": "never",
-        "singleline": "never"
-      }
-    ]
-  },
-  "rules": {
-    "export-name": false,
-    "function-name": false,
-    "interface-name": [
-      true,
-      "never-prefix"
-    ],
-    "member-access": false,
-    "member-ordering": [
-      false
-    ],
-    "missing-jsdoc": false,
-    "newline-before-return": false,
-    "no-any": false,
-    "no-default-export": false,
-    "no-non-null-assertion": false,
-    "no-parameter-properties": false,
-    "no-relative-imports": false,
-    "no-reserved-keywords": false,
-    "no-require-imports": false,
-    "no-single-line-block-comment": false,
-    "no-var-requires": false,
-    "react-tsx-curly-spacing": [
-      true,
-      "never",
-      {
-        "allowMultiline": true
-      }
-    ],
-    "typedef": [
-      true,
-      "parameter",
-      "property-declaration"
-    ]
-  }
+    "@progre/tslint-config"
+  ]
 }

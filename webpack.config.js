@@ -12,43 +12,27 @@ const common = {
   watchOptions: { ignored: /node_modules|lib/ }
 };
 
-function tsModule(targets) {
-  return {
-    rules: [{
-      test: /\.tsx?$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            env: {
-              development: {
-                plugins: [['babel-plugin-espower', { 'embedAst': true }]]
-              },
-              production: {
-                presets: ['babili']
-              }
-            },
-            presets: [['env', { targets }]]
-          }
-        },
-        {
-          loader: 'ts-loader',
-          options: { compilerOptions: { sourceMap: !isProduction } }
-        }
-      ]
-    }]
-  };
-}
+const tsLoader = {
+  rules: [{
+    test: /\.tsx?$/,
+    use: [
+      {
+        loader: 'ts-loader',
+        options: { compilerOptions: { sourceMap: !isProduction } }
+      }
+    ]
+  }]
+};
 
 module.exports = [
   Object.assign({},
     common,
     {
       entry: {
-        index: ['babel-polyfill', './src/public/js/index.ts']
+        index: './src/public/js/index.ts'
       },
       externals: /^electron$/,
-      module: tsModule({ uglify: true }),
+      module: tsLoader,
       output: {
         filename: 'lib/public/js/[name].js',
         libraryTarget: 'commonjs2'
@@ -80,11 +64,10 @@ module.exports = [
     common,
     {
       entry: {
-        index: ['babel-polyfill', './src/index.ts'],
-        'test/test': ['babel-polyfill', './src/test/test.ts']
+        index: './src/index.ts'
       },
       externals: /^(?!\.)/,
-      module: tsModule({ electron: electronVersion }),
+      module: tsLoader,
       output: {
         filename: 'lib/[name].js',
         libraryTarget: 'commonjs2'

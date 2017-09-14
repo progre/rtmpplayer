@@ -9,14 +9,17 @@
       "dom.iterable"
     ],
     "module": "commonjs",
-    "noImplicitAny": true,
     "noUnusedLocals": true,
+    "plugins": [
+      {
+        "name": "tslint-language-service"
+      }
+    ],
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "target": "es2017"
+    "strict": true,
+    "target": "es5"
   },
   "exclude": [
-    "node_modules",
-    "typings"
+    "node_modules"
   ]
 }
