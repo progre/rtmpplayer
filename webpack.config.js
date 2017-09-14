@@ -8,7 +8,7 @@ const common = {
   devtool: isProduction ? false : 'inline-source-map',
   node: { __dirname: true, __filename: true },
   resolve: { extensions: ['.ts', '.tsx', '.js'] },
-  watchOptions: { ignored: /node_modules|lib/ }
+  watchOptions: { ignored: /node_modules|lib/ },
 };
 
 const tsLoader = {
@@ -23,48 +23,39 @@ const tsLoader = {
   }]
 };
 
+const clientSide = {
+  entry: {
+    index: './src/public/js/index.ts'
+  },
+  module: tsLoader,
+  output: { filename: 'lib/public/js/[name].js' },
+  plugins: [
+    new CopyWebpackPlugin(
+      [{ from: 'src/public/', to: 'lib/public/' }],
+      { ignore: ['test/', '*.ts', '*.tsx'] },
+    ),
+    ...(
+      !isProduction ? [] : [
+        new webpack.optimize.UglifyJsPlugin({
+          output: { comments: uglifySaveLicense }
+        })
+      ]
+    )
+  ],
+  target: 'web',
+};
+
+const serverSide = {
+  entry: {
+    index: './src/index.ts'
+  },
+  externals: /^(?!\.)/,
+  module: tsLoader,
+  output: { filename: 'lib/[name].js', libraryTarget: 'commonjs2' },
+  target: 'node',
+};
+
 module.exports = [
-  Object.assign({},
-    common,
-    {
-      entry: {
-        index: './src/public/js/index.ts'
-      },
-      module: tsLoader,
-      output: { filename: 'lib/public/js/[name].js' },
-      plugins: [
-        ...[
-          new CopyWebpackPlugin(
-            [{ from: 'src/public/', to: 'lib/public/' }],
-            {
-              ignore: [
-                'test/',
-                '*.ts',
-                '*.tsx'
-              ]
-            })
-        ],
-        ...(
-          !isProduction ? [] : [
-            new webpack.optimize.UglifyJsPlugin({
-              output: { comments: uglifySaveLicense }
-            })
-          ]
-        )
-      ],
-      target: 'web'
-    }
-  ),
-  Object.assign({},
-    common,
-    {
-      entry: {
-        index: './src/index.ts'
-      },
-      externals: /^(?!\.)/,
-      module: tsLoader,
-      output: { filename: 'lib/[name].js', libraryTarget: 'commonjs2' },
-      target: 'node'
-    }
-  )
+  Object.assign({}, common, clientSide),
+  Object.assign({}, common, serverSide),
 ];
