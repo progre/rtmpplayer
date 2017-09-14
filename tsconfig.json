@@ -11,9 +11,14 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "noUnusedLocals": true,
+    "plugins": [
+      {
+        "name": "tslint-language-service"
+      }
+    ],
     "skipLibCheck": true,
     "strictNullChecks": true,
-    "target": "es2017"
+    "target": "es2015"
   },
   "exclude": [
     "node_modules",

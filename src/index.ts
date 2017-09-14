@@ -2,7 +2,7 @@ try { require('source-map-support').install(); } catch (e) { /* NOP */ }
 import module from './module';
 
 async function main() {
-  module();
+  await module();
 }
 
-main().catch(e => console.error(e.stack || e));
+main().catch((e) => { console.error(e.stack || e); });

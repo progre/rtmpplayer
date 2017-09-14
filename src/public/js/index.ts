@@ -1,7 +1,7 @@
 import module from './module';
 
 async function main() {
-  module();
+  await module();
 }
 
-main();
+main().catch((e) => { console.error(e.stack || e); });

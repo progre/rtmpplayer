@@ -12,17 +12,16 @@ const common = {
 };
 
 const tsLoader = {
-    rules: [{
-      test: /\.tsx?$/,
-      use: [
-        {
-          loader: 'ts-loader',
-          options: { compilerOptions: { sourceMap: !isProduction } }
-        }
-      ]
-    }]
-  };
-}
+  rules: [{
+    test: /\.tsx?$/,
+    use: [
+      {
+        loader: 'ts-loader',
+        options: { compilerOptions: { sourceMap: !isProduction } }
+      }
+    ]
+  }]
+};
 
 module.exports = [
   Object.assign({},
