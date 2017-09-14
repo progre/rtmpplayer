@@ -9,7 +9,7 @@ const common = {
   devtool: isProduction ? false : 'inline-source-map',
   node: { __filename: true, __dirname: false },
   resolve: { extensions: ['.ts', '.tsx', '.js'] },
-  watchOptions: { ignored: /node_modules|lib/ }
+  watchOptions: { ignored: /node_modules|lib/ },
 };
 
 const tsLoader = {
@@ -24,55 +24,40 @@ const tsLoader = {
   }]
 };
 
+const clientSide = {
+  entry: {
+    index: './src/public/js/index.ts'
+  },
+  externals: /^electron$/,
+  module: tsLoader,
+  output: { filename: 'lib/public/js/[name].js', libraryTarget: 'commonjs2' },
+  plugins: [
+    new CopyWebpackPlugin(
+      [{ from: 'src/public/', to: 'lib/public/' }],
+      { ignore: ['test/', '*.ts', '*.tsx'] },
+    ),
+    ...(
+      !isProduction ? [] : [
+        new webpack.optimize.UglifyJsPlugin({
+          output: { comments: uglifySaveLicense }
+        })
+      ]
+    )
+  ],
+  target: 'electron-renderer',
+};
+
+const serverSide = {
+  entry: {
+    index: './src/index.ts'
+  },
+  externals: /^(?!\.)/,
+  module: tsLoader,
+  output: { filename: 'lib/[name].js', libraryTarget: 'commonjs2' },
+  target: 'electron-main',
+};
+
 module.exports = [
-  Object.assign({},
-    common,
-    {
-      entry: {
-        index: './src/public/js/index.ts'
-      },
-      externals: /^electron$/,
-      module: tsLoader,
-      output: {
-        filename: 'lib/public/js/[name].js',
-        libraryTarget: 'commonjs2'
-      },
-      plugins: [
-        ...[
-          new CopyWebpackPlugin(
-            [{ from: 'src/public/', to: 'lib/public/' }],
-            {
-              ignore: [
-                'test/',
-                '*.ts',
-                '*.tsx'
-              ]
-            })
-        ],
-        ...(
-          !isProduction ? [] : [
-            new webpack.optimize.UglifyJsPlugin({
-              output: { comments: uglifySaveLicense }
-            })
-          ]
-        )
-      ],
-      target: 'electron-renderer'
-    }
-  ),
-  Object.assign({},
-    common,
-    {
-      entry: {
-        index: './src/index.ts'
-      },
-      externals: /^(?!\.)/,
-      module: tsLoader,
-      output: {
-        filename: 'lib/[name].js',
-        libraryTarget: 'commonjs2'
-      },
-      target: 'electron-main'
-    }
-  )
+  { ...common, ...clientSide },
+  { ...common, ...serverSide },
 ];
