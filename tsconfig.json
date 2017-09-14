@@ -9,7 +9,6 @@
       "dom.iterable"
     ],
     "module": "commonjs",
-    "noImplicitAny": true,
     "noUnusedLocals": true,
     "plugins": [
       {
@@ -17,11 +16,10 @@
       }
     ],
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "target": "es2015"
+    "strict": true,
+    "target": "es5"
   },
   "exclude": [
-    "node_modules",
-    "typings"
+    "node_modules"
   ]
 }
