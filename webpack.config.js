@@ -11,25 +11,10 @@ const common = {
   watchOptions: { ignored: /node_modules|lib/ }
 };
 
-function tsModule(targets) {
-  return {
+const tsLoader = {
     rules: [{
       test: /\.tsx?$/,
       use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            env: {
-              development: {
-                plugins: [['babel-plugin-espower', { 'embedAst': true }]]
-              },
-              production: {
-                presets: ['babili']
-              }
-            },
-            presets: [['env', { targets }]]
-          }
-        },
         {
           loader: 'ts-loader',
           options: { compilerOptions: { sourceMap: !isProduction } }
@@ -44,9 +29,9 @@ module.exports = [
     common,
     {
       entry: {
-        index: ['babel-polyfill', './src/public/js/index.ts']
+        index: './src/public/js/index.ts'
       },
-      module: tsModule({ uglify: true }),
+      module: tsLoader,
       output: { filename: 'lib/public/js/[name].js' },
       plugins: [
         ...[
@@ -75,11 +60,10 @@ module.exports = [
     common,
     {
       entry: {
-        index: ['babel-polyfill', './src/index.ts'],
-        'test/test': ['babel-polyfill', './src/test/test.ts']
+        index: './src/index.ts'
       },
       externals: /^(?!\.)/,
-      module: tsModule({ node: 6 }),
+      module: tsLoader,
       output: { filename: 'lib/[name].js', libraryTarget: 'commonjs2' },
       target: 'node'
     }
