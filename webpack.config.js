@@ -56,6 +56,6 @@ const serverSide = {
 };
 
 module.exports = [
-  Object.assign({}, common, clientSide),
-  Object.assign({}, common, serverSide),
+  { ...common, ...clientSide },
+  { ...common, ...serverSide },
 ];
