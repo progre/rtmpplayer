@@ -1,8 +1,8 @@
 const fetch = require("node-fetch");
-const thenify = require("thenify");
-const exec = thenify(require("child_process").exec);
-const mkdir = thenify(require("fs").mkdir);
-const electronPackager = thenify(require("electron-packager"));
+const { promisify } = require("util");
+const exec = promisify(require("child_process").exec);
+const mkdir = promisify(require("fs").mkdir);
+const electronPackager = promisify(require("electron-packager"));
 const package = require("./package.json");
 let appName = package.name;
 let electronVersion = package.devDependencies.electron.slice(1);

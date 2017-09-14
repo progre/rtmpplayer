@@ -12,7 +12,7 @@ async function main() {
     show: true,
   });
   win.loadURL(`file://${__dirname}/public/index.html`);
-  module();
+  await module();
 }
 
 main().catch((e) => { console.error(e.stack || e); });
