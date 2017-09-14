@@ -9,6 +9,7 @@
     "babel-polyfill": "^6.23.0"
   },
   "devDependencies": {
+    "@progre/tslint-config": "^5.1.0",
     "@types/empower": "^1.2.30",
     "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.0",
@@ -28,9 +29,7 @@
     "power-assert": "^1.4.2",
     "source-map-support": "^0.4.15",
     "ts-loader": "^2.1.0",
-    "tslint": "^5.4.0",
-    "tslint-config-airbnb": "^5.2.0",
-    "tslint-microsoft-contrib": "^5.0.0",
+    "tslint": "^5.7.0",
     "tsutils": "1.6.0",
     "typescript": "^2.3.4",
     "uglify-save-license": "^0.4.1",
