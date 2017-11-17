@@ -38,7 +38,7 @@
   },
   "scripts": {
     "build": "run-p clean release-build",
-    "clean": "del lib",
+    "clean": "del-cli lib",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "debug-build": "cross-env NODE_ENV=development webpack --progress",
     "release-build": "cross-env NODE_ENV=production webpack --progress",
