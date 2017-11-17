@@ -29,7 +29,7 @@
     "LICENSE"
   ],
   "homepage": "https://github.com/progre/typescript-boilerplate#readme",
-  "license": "Unlicense",
+  "license": "CC0-1.0",
   "main": "lib/index.js",
   "private": true,
   "repository": {
