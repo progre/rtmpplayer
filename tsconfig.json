@@ -10,6 +10,7 @@
     ],
     "module": "commonjs",
     "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "plugins": [
       {
         "name": "tslint-language-service"

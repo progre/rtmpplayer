@@ -7,7 +7,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "^4.3.0",
+    "@commitlint/cli": "^5.0.1",
     "@commitlint/config-angular": "^5.0.1",
     "@progre/tslint-config": "~5.3.0",
     "@types/node": "^8.0.28",
