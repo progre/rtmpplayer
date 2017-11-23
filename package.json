@@ -11,7 +11,7 @@
     "@commitlint/config-angular": "^5.0.1",
     "@progre/tslint-config": "~5.3.0",
     "@types/node": "^8.0.28",
-    "copy-webpack-plugin": "^4.2.0",
+    "copy-webpack-plugin": "^4.2.3",
     "cross-env": "^5.1.1",
     "del-cli": "^1.1.0",
     "husky": "^0.14.3",
