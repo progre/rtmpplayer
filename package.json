@@ -25,8 +25,7 @@
     "webpack": "^3.10.0"
   },
   "files": [
-    "lib",
-    "LICENSE"
+    "lib"
   ],
   "homepage": "https://github.com/progre/typescript-boilerplate#readme",
   "license": "CC0-1.0",
