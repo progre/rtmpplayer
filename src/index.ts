@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-implicit-dependencies
 try { require('source-map-support').install(); } catch (e) { /* NOP */ }
 import { app, BrowserWindow } from 'electron';
 import module from './module';
