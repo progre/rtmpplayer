@@ -1,7 +1,10 @@
-// tslint:disable-next-line:no-implicit-dependencies
+// tslint:disable:no-implicit-dependencies
 try { require('source-map-support').install(); } catch (e) { /* NOP */ }
-import { app, BrowserWindow } from 'electron';
+import electron from 'electron';
+// tslint:enable:no-implicit-dependencies
 import module from './module';
+
+const { app, BrowserWindow } = electron;
 
 async function main() {
   await new Promise((resolve, reject) => app.once('ready', resolve));
