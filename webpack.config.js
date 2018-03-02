@@ -8,7 +8,7 @@ const common = {
   devtool: isProduction ? false : 'inline-source-map',
   node: { __dirname: true, __filename: true },
   resolve: { extensions: ['.ts', '.tsx', '.js'] },
-  watchOptions: { ignored: /node_modules|lib/ },
+  watchOptions: { ignored: /node_modules|dist/ },
 };
 
 const tsLoader = {
@@ -28,10 +28,10 @@ const clientSide = {
     index: './src/public/js/index.ts'
   },
   module: tsLoader,
-  output: { filename: 'lib/public/js/[name].js' },
+  output: { filename: 'dist/public/js/[name].js' },
   plugins: [
     new CopyWebpackPlugin(
-      [{ from: 'src/public/', to: 'lib/public/' }],
+      [{ from: 'src/public/', to: 'dist/public/' }],
       { ignore: ['test/', '*.ts', '*.tsx'] },
     ),
     ...(
@@ -51,7 +51,7 @@ const serverSide = {
   },
   externals: /^(?!\.)/,
   module: tsLoader,
-  output: { filename: 'lib/[name].js', libraryTarget: 'commonjs2' },
+  output: { filename: 'dist/[name].js', libraryTarget: 'commonjs2' },
   target: 'node',
 };
 
