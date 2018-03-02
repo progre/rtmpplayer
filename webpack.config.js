@@ -9,7 +9,7 @@ const common = {
   devtool: isProduction ? false : 'inline-source-map',
   node: { __filename: true, __dirname: false },
   resolve: { extensions: ['.ts', '.tsx', '.js'] },
-  watchOptions: { ignored: /node_modules|lib/ },
+  watchOptions: { ignored: /node_modules|dist/ },
 };
 
 const tsLoader = {
@@ -30,10 +30,10 @@ const clientSide = {
   },
   externals: /^electron$/,
   module: tsLoader,
-  output: { filename: 'lib/public/js/[name].js', libraryTarget: 'commonjs2' },
+  output: { filename: 'dist/public/js/[name].js', libraryTarget: 'commonjs2' },
   plugins: [
     new CopyWebpackPlugin(
-      [{ from: 'src/public/', to: 'lib/public/' }],
+      [{ from: 'src/public/', to: 'dist/public/' }],
       { ignore: ['test/', '*.ts', '*.tsx'] },
     ),
     ...(
@@ -53,7 +53,7 @@ const serverSide = {
   },
   externals: /^(?!\.)/,
   module: tsLoader,
-  output: { filename: 'lib/[name].js', libraryTarget: 'commonjs2' },
+  output: { filename: 'dist/[name].js', libraryTarget: 'commonjs2' },
   target: 'electron-main',
 };
 
