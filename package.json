@@ -25,11 +25,11 @@
     "webpack": "^3.11.0"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "homepage": "https://github.com/progre/typescript-boilerplate#readme",
   "license": "CC0-1.0",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "private": true,
   "repository": {
     "type": "git",
@@ -37,11 +37,11 @@
   },
   "scripts": {
     "build": "run-s clean release-build",
-    "clean": "del-cli lib",
+    "clean": "del-cli dist",
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "debug-build": "cross-env NODE_ENV=development webpack --progress",
     "release-build": "cross-env NODE_ENV=production webpack --progress",
     "watch": "cross-env NODE_ENV=development webpack --progress --watch"
   },
-  "typings": "lib/index.d.ts"
+  "typings": "dist/index.d.ts"
 }
