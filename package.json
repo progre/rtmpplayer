@@ -1,11 +1,14 @@
 {
-  "name": "typescript-boilerplate",
-  "description": "Boilerplate for TypeScript project.",
-  "version": "1.0.0",
+  "name": "rtmpplayer",
+  "description": "RTMP protocol player implemented by pure JavaScript and Electron.",
+  "version": "0.1.0",
   "bugs": {
-    "url": "https://github.com/progre/typescript-boilerplate/issues"
+    "url": "https://github.com/progre/rtmpplayer/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "flv.js": "^1.4.2",
+    "node-media-server": "^1.2.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^6.1.2",
     "@commitlint/config-conventional": "^6.1.2",
@@ -29,13 +32,13 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/progre/typescript-boilerplate#readme",
-  "license": "CC0-1.0",
+  "homepage": "https://github.com/progre/rtmpplayer#readme",
+  "license": "MIT",
   "main": "dist/index.js",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/progre/typescript-boilerplate.git"
+    "url": "git+https://github.com/progre/rtmpplayer.git"
   },
   "scripts": {
     "build": "run-s clean release-build",
@@ -44,7 +47,7 @@
     "debug-build": "cross-env NODE_ENV=development webpack --progress",
     "package": "electron-packer",
     "release-build": "cross-env NODE_ENV=production webpack --progress",
-    "start": "electron .",
+    "start": "electron . 1936",
     "watch": "cross-env NODE_ENV=development webpack --progress --watch"
   },
   "typings": "dist/index.d.ts"

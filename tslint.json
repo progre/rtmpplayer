@@ -1,5 +1,9 @@
 {
   "extends": [
     "@progre/tslint-config"
-  ]
+  ],
+  "rules": {
+    "binary-expression-operand-order": false,
+    "strict-boolean-expressions": false
+  }
 }

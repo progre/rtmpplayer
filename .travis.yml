@@ -3,11 +3,22 @@ dist: trusty
 language: node_js
 node_js: 8
 before_script:
-  - sudo rm /etc/apt/sources.list.d/google-chrome.list
-  - sudo dpkg --add-architecture i386
-  - sudo apt-get update
-  - sudo apt-get install -y wine1.6
+- sudo rm /etc/apt/sources.list.d/google-chrome.list
+- sudo dpkg --add-architecture i386
+- sudo apt-get update
+- sudo apt-get install -y wine1.6
 script:
-  - npm run debug-build
-  - npm run build
-  - npm run package
+- npm run debug-build
+- npm run build
+- npm run package
+deploy:
+  provider: releases
+  api_key:
+    secure: NUv2vnqQHRU9wI2UQ7uHiBy5TCNAB1b7KLarDLqcRbY59hs1khM1XGj+TMMjKcxhrRQdSujA42YQheT8FPSVbuRz/LOSJGC2+aynFge9V4m65LilBj0NEghQBD7vKcNr1l0rhkTLqp2h6ibyiJxL49zR5tP2LXZI6muik5A1LMuD8u5Ur+6fuiE6IcpWB7zwDy5dxhpRsLiRRIS8W8f0u0f1pjcWDohbA1nZe7WK2j7fWbnQUaA4b6nO1nxqYFBGJsdYlnYxOX82C+I1kdvmTBNk/S7HGz+B8LfEZsu7tRM+YilW2cEuv09wd1mahGJ06A/KD9onhkPfgcl02Lv7ECGyPXdeTuLm2rzjnxviWjRyndWf//psQPxRax9cYwE7g50TBcl3m/KQrOFzgGiPT/O74IHKVmrS71LMx2wFTi0T/bNQWynELP5tuFBXXOULKbmhNqcZ1tHxifP08xlQPYp7tZnNLk9e00+5TU/0bOV3kEd7mHEZQulLu8RcvTwfjCBz8P24lbmfiduoC6xowmWh73gkm0KO/9x76BUTGHBdrZSx2ONGLeTcl0ovvbi4C8sSoe+QV21ExyCgWKY3BgRWIJcJFD6QdKEy+PJ2xuudxmjL4zIKIWkH1kMFect2WsP9MP9gZEdFIpjFjCld90gBAPUo7jRdcwLEXTDB4QY=
+  file:
+    - tmp/rtmpplayer-mac.zip
+    - tmp/rtmpplayer-win.zip
+  on:
+    tags: true
+  prerelease: true
+  skip_cleanup: true
